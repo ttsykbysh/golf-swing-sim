@@ -23,7 +23,7 @@
       font-size: 26px;
     }
     .note {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.97);
       border-radius: 12px;
       padding: 15px;
       margin: 15px auto;
@@ -50,12 +50,11 @@
   <strong>【注意事項】</strong><br>
   ・周囲に人や物がないことを確認してください。<br>
   ・スマートフォンの落下に十分ご注意ください。<br>
-  ・全力で振る必要はありません。<br>
-  ・本企画は体感イベント用のシミュレーションです。
+  ・全力で振る必要はありません。
 </div>
 
-<div id="app" style="display:none;">
-  <p>スマートフォンをゴルフクラブのグリップのように握り、<br>2秒間スイングを行います（全3回）</p>
+<div id="app" style="display:none; background: rgba(255,255,255,0.97); border-radius:12px; padding:15px; max-width:520px; margin:0 auto;">
+  <p>スマートフォンをゴルフクラブのグリップのように握り、<br>スイングを行います（全3回）</p>
   <button onclick="startSwing()">スイング開始</button>
   <button onclick="resetAll()">リセット</button>
   <div id="status"></div>
@@ -120,7 +119,7 @@ function showResult() {
   const deviation = max - min;
 
   let penalty = 0;
-  if (deviation > 20) penalty = deviation * 0.2;
+  if (deviation > 10) penalty = deviation * 0.4;
 
   const finalScore = Math.max(avg - penalty, 0);
 

@@ -108,7 +108,9 @@ function startSwing() {
 }
 
 function accelToDistance(accel) {
-  return accel * 15; // 体感用簡易モデル
+  // 体感用簡易モデル（最大300yd未満に制限）
+  const raw = accel * 10; // 係数を抑制
+  return Math.min(raw, 299.9);
 }
 
 function showResult() {
@@ -145,3 +147,4 @@ window.addEventListener('devicemotion', (e) => {
 </script>
 </body>
 </html>
+

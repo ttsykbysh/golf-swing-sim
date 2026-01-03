@@ -49,8 +49,7 @@
 <div class="note">
   <strong>【注意事項】</strong><br>
   ・周囲に人や物がないことを確認してください。<br>
-  ・スマートフォンの落下に十分ご注意ください。<br>
-  ・全力で振る必要はありません。
+  ・スマートフォンの落下に十分ご注意ください。
 </div>
 
 <div id="app" style="display:none; background: rgba(255,255,255,0.97); border-radius:12px; padding:15px; max-width:520px; margin:0 auto;">
@@ -62,8 +61,8 @@
 </div>
 
 <div class="note" style="margin-top:30px;">
-  これは、ChatGPT（無料版）を使用し、<br>
-  プロンプトによる指示のみで作成したものです。<br>
+  【参考】ChatGPT（無料版）を使用し、<br>
+  プロンプトによる指示のみで作成<br>
   <strong>Kizuna運動 地域社会との絆チーム</strong>
 </div>
 
@@ -107,8 +106,11 @@ function startSwing() {
 }
 
 function accelToDistance(accel) {
-  // 体感用簡易モデル（最大300yd未満に制限）
-  const raw = accel * 10; // 係数を抑制
+  // 体感用改良モデル（300yd張り付き防止）
+  // 人のスイング加速度は概ね 10〜30 程度を想定
+  // 非線形（平方根）で伸びを抑えつつ幅を確保
+  const normalized = Math.max(accel - 9, 0); // 微振動カット
+  const raw = Math.sqrt(normalized) * 55 + 120;
   return Math.min(raw, 299.9);
 }
 
